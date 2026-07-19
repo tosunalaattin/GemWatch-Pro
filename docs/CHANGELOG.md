@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-07-19
+
+### Added
+
+- React/Vite status shell, Fastify health API, worker lifecycle shell, and five private foundation packages.
+- Versioned runtime-validated health contract, configuration parsing, redacted structured logging, and disabled-by-default OpenTelemetry bootstrap.
+
+### Changed
+
+- Product/specification versions advanced to 0.0.3/0.3.0 and living documentation now reflects the working platform.
+
+### Security
+
+- Added fail-fast environment validation, live-trading false enforcement, CORS allowlist, security headers, safe errors, rate limit, secret redaction/scanning, dependency audit, and explicit pnpm build-script policy.
+
+### Infrastructure
+
+- Added pnpm/Turborepo workspace, exact lockfile, local PostgreSQL/Redis Compose services, health checks, volumes, isolated network, and guarded destructive reset.
+
+### Testing
+
+- Added unit/API/web/worker tests, Testcontainers integration direction, Playwright smoke test, and CI quality/integration/E2E jobs.
+
+### Documentation
+
+- Added local development, CI security, environment, health/readiness, and dependency inventory documents and synchronized living standards/state/handoff.
+
 ## [0.0.2] - 2026-07-19
 
 ### Added

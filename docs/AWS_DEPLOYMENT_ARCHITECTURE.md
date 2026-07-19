@@ -132,3 +132,5 @@ Production requires measured staging reliability, threat model, independent secu
 4. Managed RDS/Redis/S3/Secrets boundaries are introduced and restored/tested.
 5. API and worker images move to ECS Fargate using the same contracts.
 6. Production readiness is reviewed; EKS, Lambda, SQS, multi-region, or specialized stores require measured need and ADRs.
+
+Sprint 0.3 added CI only. It created no AWS resource, credential, deployment workflow, production image, Cognito integration, or remote environment. Existing directions remain proposals governed by ADR-0017 and future promotion gates.

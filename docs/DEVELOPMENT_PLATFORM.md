@@ -2,7 +2,7 @@
 
 ## Status
 
-The platform is specified but not implemented. Sprint 0.3 will create manifests, configurations, minimal health-check applications, Compose services, and CI; Sprint 0.2 adds no runtime files.
+The development-platform baseline was implemented in Sprint 0.3. Product/domain functionality remains deferred.
 
 ## Required Developer Tools
 
@@ -106,3 +106,5 @@ Use non-production, minimum-scope credentials outside Git. Prefer local fake/san
 10. Add a base GitHub Actions quality workflow with least privilege and pinned actions.
 11. Document Windows/WSL2 setup, one-command target, troubleshooting, and cleanup.
 12. Validate clean bootstrap, repeat install, build/test, no domain behavior, and no live capability.
+
+The list is implemented with Node 24/pnpm 11 policy, an exact lockfile, Turborepo, strict TypeScript/ESLint/Prettier, layered tests, local PostgreSQL/Redis, safe configuration, health-only shells, and read-only GitHub Actions. See [Local Development Guide](LOCAL_DEVELOPMENT_GUIDE.md) and [Dependency Inventory](DEPENDENCY_INVENTORY.md).

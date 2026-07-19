@@ -35,3 +35,7 @@ Provider/chain adapters use versioned fixtures and contract suites. Deterministi
 ## Future Detail
 
 Coverage/mutation thresholds, fixture formats, browser matrix, load/security tools, performance targets, historical datasets, paper duration, promotion gates, and CI parallelism remain to be measured.
+
+## Implemented Platform Rules
+
+Vitest covers configuration, health schemas, UTC/correlation primitives, redaction/logger metadata, disabled telemetry, Fastify injection/readiness failures/safe errors, web health states, and worker lifecycle/no-job behavior. Testcontainers defines disposable PostgreSQL/Redis checks with reuse off; Playwright defines a Chromium status smoke test. Docker-dependent tests skip visibly unless enabled.

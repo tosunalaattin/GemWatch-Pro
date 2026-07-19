@@ -1,5 +1,7 @@
 # GemWatch Pro Roadmap
 
+Current status: Sprint 0.3 completed the development-platform bootstrap portion of Phase 1. Core domain foundations and architecture enforcement remain Sprint 0.4 work; no Phase 2 capability has started.
+
 This roadmap is ordered by dependency and safety maturity. Sprint 0.2 selected the initial architecture through ADR-0002–ADR-0019; exact implementation versions remain unpinned until Sprint 0.3. Completing a phase requires evidence against exit criteria, and later work cannot waive earlier safety gates.
 
 ## Phase 0: Governance and Architecture

@@ -33,3 +33,7 @@ GraphQL is not an initial interface. Internal modular-monolith calls use applica
 ## Future Detail
 
 Schema library, URL/version convention, error envelope, pagination/cursor format, WebSocket protocol/resume, rate limits, generated clients, and numeric SLOs are finalized with implemented contracts.
+
+## Implemented Platform Rules
+
+Fastify exposes only `/health`, `/health/live`, and `/health/ready` with JSON Schema/OpenAPI and shared runtime validation. Requests receive correlation IDs, a one-MiB body limit, bounded timeouts, exact CORS allowlisting, Helmet headers, a baseline rate limit, redacted logging, and safe errors. Swagger UI is disabled in production. No product, identity, WebSocket, or command endpoint exists.

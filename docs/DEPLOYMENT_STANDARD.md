@@ -36,3 +36,7 @@ OCI-compatible artifacts move from Compose staging to ECS roles. GitHub Actions 
 ## Future Detail
 
 Infrastructure-as-code tool, AWS region/account/VPC layout, image build/signing, release strategy, sizes/autoscaling, SLOs, retention, RPO/RTO, DNS/domain, approval roles, and disaster-recovery design require later evidence.
+
+## Implemented Platform Rules
+
+Only local Compose and non-deploying CI exist. Compose uses exact PostgreSQL/Redis images, health checks, named volumes, a dedicated network, local-only credentials, and a guarded destructive reset. GitHub workflows contain no AWS access, environment promotion, migration, production credential, or deployment step.

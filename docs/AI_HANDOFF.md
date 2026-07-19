@@ -2,71 +2,42 @@
 
 ## Project Summary
 
-GemWatch Pro is a planned modular on-chain intelligence platform progressing from evidence collection and research through backtesting and paper trading to, only after later safety gates, controlled live execution. Scores and AI are advisory; no profitability or authorization is implied.
+GemWatch Pro is a planned modular on-chain intelligence platform. Product version 0.0.3 provides only a development platform and health shells. Scores and AI remain advisory concepts; no financial result or transaction authority is implied.
 
-## Current Stage
+## Current Stage and Sprint Result
 
-Foundation after completed Sprint 0.2. Product version is 0.0.2 and specification version is 0.2.0. Architecture and initial technology decisions are accepted, but the development platform is not implemented. Application code, integrations, schema, deployment, paper trading, wallets, and live trading have not started.
-
-- Application code: Not started
-- Production deployment: Not started
-- Live trading: Disabled / Not implemented
-- Paper trading: Not implemented
-- Development platform: Specified, not implemented
+Foundation, after completed Sprint 0.3. The repository now has a Node/pnpm workspace, React/Vite web shell, Fastify API shell, worker lifecycle, shared foundation packages, Compose PostgreSQL/Redis, layered tests, and CI/security gates. Specification version is 0.3.0.
 
 ## Completed Work
 
-- Sprint 0.1 governance/documentation/repository skeleton
-- Sprint 0.2 official-source technology evaluation and weighted matrix
-- System boundaries and data/event/observability/development/AWS architecture
-- ADR-0002–ADR-0019 accepted and MEM-013–MEM-030 recorded
-- Existing specification, architecture, roadmap, standards, state, memory, protocol, and changelog synchronized
-
-## Accepted Initial Architecture
-
-Modular monolith first; TypeScript on supported Node.js LTS; React/Vite; Fastify; pnpm workspaces/Turborepo; PostgreSQL/Drizzle reviewed SQL migrations; Redis/BullMQ with PostgreSQL outbox/idempotency; REST/OpenAPI/WebSocket; provider/chain adapters; OpenTelemetry plus structured JSON logs; Vitest/Testcontainers/Playwright; native Node plus Compose local infrastructure; GitHub Actions; isolated AWS-host staging; ECS Fargate/RDS/managed Redis/S3/Secrets Manager production direction; Cognito OIDC + PKCE; exact numeric and UTC policies.
+- Sprint 0.1 governance and repository skeleton
+- Sprint 0.2 architecture/technology research with ADR-0002–ADR-0019
+- Sprint 0.3 exact manifests/lockfile, platform tooling, health contract/endpoints, safe configuration/logging/telemetry, local infrastructure, CI, tests, and operational documentation
 
 ## Not Yet Done
 
-No package.json, lockfile, runtime dependency, Compose file, workflow, database schema/migration, API endpoint, React screen, server, provider SDK, chain selection, AWS connection/resource, credential, wallet, or trade code exists. Exact package/container/action versions are not pinned. UI supporting libraries, initial chain/providers, detailed schemas, telemetry backend, AWS sizes/region/RTO/RPO, and live custody remain deferred.
+No token/pool/wallet model, domain schema/migration, scanner, provider/chain connection, score, strategy, backtest, paper trade, login/Cognito, AWS resource, wallet, transaction, or live capability exists. No worker domain queue/job is registered. Production deployment has not started.
 
-## Binding Decisions
+## Binding Decisions and Invariants
 
-MEM-001–MEM-030 and ADR-0001–ADR-0019 are canonical. Repository truth, documentation first, provider adapters, security corroboration, Risk Manager non-bypass, paper-before-live, live opt-in/off-by-default, secret exclusion, AI non-authorization, audit immutability, paper/live separation, exact arithmetic, and application-owned authorization cannot be weakened silently.
+ADR-0001–ADR-0019 and MEM-001–MEM-037 are canonical. Do not bypass Risk Manager, enable live trading, authorize a trade from AI, commit secrets, couple providers to domain logic, use JavaScript number for financial values, make Redis authoritative, add runtime migrations, or weaken exact UTC/configuration/CI boundaries. Technology changes require a superseding ADR.
 
-## Required Reading Order
+## Required Reading
 
-1. PROJECT_SESSION_STATE.md
-2. AI_HANDOFF.md
-3. AI_MEMORY.md
-4. GemWatch_Engineering_Specification.md
-5. TECHNOLOGY_EVALUATION.md and TECHNOLOGY_DECISION_MATRIX.md
-6. ARCHITECTURE.md and SYSTEM_BOUNDARIES.md
-7. DATA_ARCHITECTURE.md, EVENT_ARCHITECTURE.md, OBSERVABILITY_ARCHITECTURE.md
-8. DEVELOPMENT_PLATFORM.md and AWS_DEPLOYMENT_ARCHITECTURE.md
-9. Relevant standards and ADRs
-10. ROADMAP.md and CHANGELOG.md
-
-## Sprint 0.2 Outcome
-
-The first implementable technical architecture is documented and accepted. The architecture remains a plan, not working software or production readiness. No chain/provider or live capability was selected or implemented.
+Read PROJECT_SESSION_STATE, this handoff, AI_MEMORY, MASTER_PROMPT, the engineering specification, architecture/system boundaries, development/local/environment/health documents, applicable standards/ADRs, roadmap, and changelog. Inspect package manifests, workspace config, lockfile, workflows, and actual tests before edits.
 
 ## Next Task
 
-Sprint 0.3 — Development Platform Bootstrap. Pin the supported Node LTS and pnpm; create workspace/root tooling, manifests, formatting/lint/type/test/build/documentation/security gates, local PostgreSQL/Redis Compose services, environment examples, base GitHub Actions, and minimal health-check-only web/API/worker shells. Implement no domain feature.
+Sprint 0.4 — Core Domain Foundation and Architecture Enforcement: establish domain module boundaries, canonical identifiers, exact numeric and UTC primitives, result/error and event/provenance/idempotency envelopes, dependency/architecture tests, and a database schema design baseline. Implement no scanner, external integration, or trading.
 
 ## Output and Validation Rules
 
-Repository artifacts are English; user sprint reports follow requested language. Before closure validate structure, links, Mermaid, ADR/memory/state consistency, versions, secrets, tests, staged diff, commit/push, and local/remote SHA. Report every skipped/failed check honestly.
+Repository artifacts are English; requested user sprint reports are Turkish. Preserve strict typing and meaningful assertions. Run relevant frozen-install, format, lint, typecheck, unit/integration/E2E, build, docs/workspace, audit, secret, whitespace, and Git checks. Never report skipped or failed work as passed.
 
-## Evidence and Assumptions
+## Evidence and Assumption Rules
 
-Verify current official support, compatibility, security status, licensing, and platform constraints before pinning. Never invent provider behavior, benchmark performance, AWS pricing, application capability, or successful test/deployment state. Preserve external-verification items.
+Repository evidence overrides chat. Verify unstable versions, licenses, advisories, APIs, and support against official sources. Do not invent runtime status, provider behavior, performance, cloud configuration, or product capability. Label unknowns and deferred work.
 
-## Repository-First Rule
+## Repository-First and Sprint-Close Rules
 
-Inspect working tree, branch, remote, history, VERSION, state, and accepted ADRs before edits. Repository evidence overrides chat. Preserve unrelated user work and do not reinterpret placeholder directories as implemented services.
-
-## Sprint-Close Updates
-
-Every sprint updates PROJECT_SESSION_STATE.md, AI_HANDOFF.md, CHANGELOG.md, and all materially affected memory, specification, architecture, roadmap, standards, ADRs, and version metadata. Next Task must be explicit and verifiable.
+Do not modify anything before reading branch/status/history/state and applicable decisions. Every sprint closes by updating PROJECT_SESSION_STATE.md, AI_HANDOFF.md, CHANGELOG.md, and every materially affected specification, memory, protocol, architecture, standard, roadmap, ADR, and version file.

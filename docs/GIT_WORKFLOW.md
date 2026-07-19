@@ -31,3 +31,7 @@ GitHub Actions is the CI system, pnpm lockfile changes require review, and ADR-i
 ## Future Detail
 
 Exact branch-protection settings, required check names/reviewers, merge strategy, commit/artifact signing, releases/tags, CODEOWNERS, bots, and hotfix procedure are implemented in later governance work.
+
+## Implemented Platform Rules
+
+The 0.0.3 baseline uses Conventional Commit style, one pnpm lockfile, SHA-pinned official CI actions, and automated format/lint/type/test/build/docs/workspace/security gates. Branch protection remains an administrative follow-up; no workflow may rewrite history, force push, deploy production, or receive production secrets.

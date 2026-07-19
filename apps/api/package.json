@@ -1,0 +1,46 @@
+{
+  "name": "@gemwatch/api",
+  "version": "0.0.3",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:unit": "vitest run src --passWithNoTests",
+    "test:coverage": "vitest run src --coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "@fastify/cors": "11.3.0",
+    "@fastify/helmet": "13.1.0",
+    "@fastify/rate-limit": "11.1.0",
+    "@fastify/swagger": "9.8.1",
+    "@fastify/swagger-ui": "6.1.0",
+    "@gemwatch/config": "workspace:*",
+    "@gemwatch/contracts": "workspace:*",
+    "@gemwatch/domain": "workspace:*",
+    "@gemwatch/observability": "workspace:*",
+    "drizzle-orm": "0.45.2",
+    "fastify": "5.10.0",
+    "ioredis": "5.11.1",
+    "postgres": "3.4.9"
+  },
+  "devDependencies": {
+    "@gemwatch/testing": "workspace:*",
+    "@types/node": "24.13.3",
+    "tsx": "4.23.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=24.14.0 <25"
+  }
+}

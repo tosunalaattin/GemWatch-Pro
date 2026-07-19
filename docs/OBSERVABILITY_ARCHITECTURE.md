@@ -82,3 +82,7 @@ Sprint 0.3 establishes structured logging, correlation, minimal OTel trace/metri
 ## Validation
 
 Test correlation across API/outbox/worker paths, redaction against seeded secrets, bounded metric cardinality, health behavior during dependency failure, sampling, exporter outage, queue/provider alerts, clock skew, and audit independence. Telemetry failure must not silently authorize business actions or block the emergency-stop path.
+
+## Implemented Baseline
+
+Sprint 0.3 added structured JSON logs with service/environment/version metadata, controlled errors, correlation fields, and credential/header redaction. OpenTelemetry Node bootstrap is vendor-neutral, disabled by default, optional through validated configuration, and closes gracefully. No collector, vendor backend, production sampling, retention, metric export, or audit log was selected.

@@ -32,3 +32,7 @@ PostgreSQL constraints/transactions protect identity, configuration, idempotency
 ## Future Detail
 
 Full schemas, indexes, partition keys, extensions, retention, archival format, residency, field encryption, RPO/RTO, and managed RDS sizing remain later decisions.
+
+## Implemented Platform Rules
+
+Drizzle and `postgres` provide only a connection factory, bounded `SELECT 1` health check, and explicit close lifecycle. No table, domain schema, migration, seed, startup migration, or automatic push exists. PostgreSQL `18.4-trixie` is exact for local/CI development; production selection remains governed separately.

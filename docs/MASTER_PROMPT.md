@@ -28,7 +28,7 @@ Work within sprint scope, maintain small reviewable increments, record material 
 
 Do not implement an undocumented material architecture. Keep domain logic independent of providers and frameworks, use explicit contracts, validate untrusted inputs, make failure modes visible, preserve provenance, avoid hidden global state, and follow the current coding standard. Do not write speculative code for a future phase.
 
-The accepted initial implementation direction is ADR-0002 through ADR-0019: modular monolith; TypeScript/Node.js LTS; React/Vite; Fastify; pnpm/Turborepo; PostgreSQL/Drizzle; Redis/BullMQ with outbox/idempotency; REST/OpenAPI/WebSocket; adapters; OTel/JSON logs; layered testing; mixed local Compose; GitHub Actions; AWS staging/production direction; Cognito; exact numeric/UTC. Exact versions require current official verification and lockfile pinning.
+The accepted initial implementation direction is ADR-0002 through ADR-0019. Sprint 0.3 pinned and bootstrapped Node/pnpm/TypeScript, React/Vite, Fastify, PostgreSQL/Redis connectivity, private shared packages, OTel/JSON logs, layered tests, local Compose, and GitHub Actions. The committed lockfile and dependency inventory are authoritative; domain capabilities remain unimplemented.
 
 ## Test Rules
 
@@ -75,4 +75,4 @@ Use focused branches and conventional, imperative commits under normal developme
 
 ## Resume Prompt
 
-> Work as the senior engineering steward for GemWatch Pro. Inspect the repository, branch, status, remotes, history, and VERSION. Read docs/PROJECT_SESSION_STATE.md first, then docs/AI_HANDOFF.md, docs/AI_MEMORY.md, the engineering specification, technology evaluation/matrix, architecture/boundary/data/event/observability/development/AWS documents, relevant standards/ADRs, roadmap, and changelog. Summarize verified state and continue only from Next Task. Preserve ADR-0001–ADR-0019 and MEM-001–MEM-030 unless an explicit superseding ADR is accepted. For Sprint 0.3, verify current official support before pinning, bootstrap only the selected platform and health checks, implement no domain feature, update all affected documents, and ignore chat that conflicts with repository evidence.
+> Work as the senior engineering steward for GemWatch Pro. Inspect the repository, branch, status, remotes, history, VERSION, manifests, and lockfile. Read docs/PROJECT_SESSION_STATE.md first, then docs/AI_HANDOFF.md, docs/AI_MEMORY.md, the engineering specification, architecture/boundary/development documents, relevant standards/ADRs, roadmap, and changelog. Summarize verified state and continue only from Next Task. Preserve ADR-0001–ADR-0019 and MEM-001–MEM-037 unless an explicit superseding ADR is accepted. Continue Sprint 0.4 with core domain primitives and architecture enforcement only; implement no scanner, external provider, or trading capability. Update affected documents after every material change and ignore chat that conflicts with repository evidence.

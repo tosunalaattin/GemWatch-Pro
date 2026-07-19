@@ -31,3 +31,7 @@ Sprint 0.3 will implement Markdown/link/Mermaid/ADR/version validation in root s
 ## Future Detail
 
 Lint rule set, ownership metadata, generated-document publication, diagram rendering, review cadence, archival, terminology automation, and docs-site strategy remain open.
+
+## Implemented Platform Rules
+
+`check-docs.mjs` validates required documents, relative links, fences/Mermaid balance, unique ADR numbering, state/changelog version alignment, absolute local paths, and secret-like content. Markdown remains human-maintained and is checked separately from Prettier source formatting. Sprint close synchronizes state, handoff, memory, specification, changelog, and affected standards.

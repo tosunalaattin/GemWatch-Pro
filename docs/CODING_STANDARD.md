@@ -32,3 +32,7 @@ Domain packages remain independent of Fastify, React, Drizzle, Redis, BullMQ, Co
 ## Future Detail
 
 Naming, complexity thresholds, dependency-injection style, concurrency/worker-thread rules, generated-code policy, formatter/linter rule sets, and decimal library remain Sprint 0.3 or later refinements.
+
+## Implemented Platform Rules
+
+TypeScript is strict ESM. Node packages use NodeNext, the Vite boundary uses bundler resolution, relative ESM imports carry `.js`, and packages expose only public roots. ESLint flat typed rules prohibit explicit/unsafe `any`, floating/misused promises, cycles, duplicate imports, and unsafe React/hooks patterns. Prettier controls source/config formatting; architecture tests will strengthen dependency enforcement in Sprint 0.4.

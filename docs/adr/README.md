@@ -58,3 +58,5 @@ Record evidence, assumptions, benefits, costs, security and operational impact, 
 - [ADR-0017: AWS Deployment Strategy](ADR-0017-aws-deployment-strategy.md)
 - [ADR-0018: Authentication and Authorization Boundary](ADR-0018-authentication-and-authorization-boundary.md)
 - [ADR-0019: Numeric Precision and Time Policy](ADR-0019-numeric-precision-and-time-policy.md)
+
+Sprint 0.3 implemented ADR-0002–ADR-0019 without changing their decisions. Runtime pins, ESM/configuration/health/workspace/CI/update policies were recorded as MEM-031–MEM-037 and implementation documents because they refine the accepted stack rather than select a new architecture; no ADR-0020 was required.

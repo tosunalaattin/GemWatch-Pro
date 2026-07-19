@@ -259,3 +259,66 @@ These records are persistent constraints. Changes require explicit review, synch
 - **Status:** Accepted
 - **Date:** 2026-07-19
 - **Related ADR:** [ADR-0019](adr/ADR-0019-numeric-precision-and-time-policy.md)
+
+## MEM-031: Pinned Runtime and Dependency Policy
+
+- **Decision:** Recommend Node 24.18.0 LTS, accept only the governed Node 24 engine range, pin pnpm 11.15.0 and every direct dependency exactly, and commit one frozen pnpm lockfile.
+- **Rationale:** Reproducible installs and supported security patches reduce platform and supply-chain ambiguity.
+- **Consequences:** Updates are explicit review events; mixed lockfiles and floating container tags are prohibited.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Dependency Inventory](DEPENDENCY_INVENTORY.md)
+
+## MEM-032: ESM Module Policy
+
+- **Decision:** Repository TypeScript packages use ESM with NodeNext server resolution, bundler resolution at the web boundary, explicit `.js` relative imports, and public package-root exports.
+- **Rationale:** A consistent modern module model prevents runtime/compiler divergence and deep-import coupling.
+- **Consequences:** CommonJS mixing and package-internal deep imports require explicit review.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Coding Standard](CODING_STANDARD.md)
+
+## MEM-033: Environment Validation Boundary
+
+- **Decision:** Server configuration is parsed once at process startup, fails fast safely, rejects live trading enablement, and exposes only public `VITE_` variables to browsers.
+- **Rationale:** Central validation prevents implicit defaults, secret exposure, and unsafe partial startup.
+- **Consequences:** Runtime code receives typed configuration rather than reading `process.env` throughout the application.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Environment Configuration](ENVIRONMENT_CONFIGURATION.md)
+
+## MEM-034: Versioned Health and Readiness Contract
+
+- **Decision:** Health contract 1.0.0 defines shared overall/dependency states; liveness excludes remote dependencies and readiness checks PostgreSQL/Redis with redacted bounded failures.
+- **Rationale:** Stable probe semantics support operations without leaking configuration or causing restart loops.
+- **Consequences:** Contract changes require versioning and synchronized API/web/worker tests.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Health and Readiness](HEALTH_AND_READINESS.md)
+
+## MEM-035: CI Security Baseline
+
+- **Decision:** Pull requests and main are gated by read-only CI; official actions are SHA-pinned; frozen install, quality, integration, E2E, audit, secret, lockfile, and environment checks run without production secrets or deployment.
+- **Rationale:** Repository truth needs automated, least-privilege enforcement.
+- **Consequences:** `pull_request_target`, unreviewed production deployment, floating actions, and secret-bearing untrusted jobs are prohibited.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [CI Security Baseline](CI_SECURITY_BASELINE.md)
+
+## MEM-036: Workspace Package Boundary
+
+- **Decision:** Applications and the worker consume private shared packages only through declared `workspace:*` root exports; future placeholder service directories are not packages until deliberately bootstrapped.
+- **Rationale:** Explicit package boundaries support the modular-monolith architecture and avoid accidental service claims.
+- **Consequences:** Workspace validation rejects duplicate names, version/engine drift, and invalid internal dependency ranges.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Development Platform](DEVELOPMENT_PLATFORM.md)
+
+## MEM-037: Dependency Update and Build-Script Policy
+
+- **Decision:** Dependency updates require official version/license/advisory review, frozen lockfile regeneration, full gates, and explicit pnpm lifecycle-script allow/deny entries.
+- **Rationale:** Install scripts and unreviewed version drift are high-impact supply-chain risks.
+- **Consequences:** Only required build scripts are enabled; deprecated/transitive findings remain visible until upstream resolution.
+- **Status:** Accepted
+- **Date:** 2026-07-19
+- **Related implementation document:** [Dependency Inventory](DEPENDENCY_INVENTORY.md)

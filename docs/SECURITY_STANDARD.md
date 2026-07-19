@@ -39,3 +39,7 @@ Provider/chain input enters only through adapters. PostgreSQL is authoritative; 
 ## Future Detail
 
 Cognito detailed policy, cryptography, custody/signing, wallet/live step-up, vulnerability SLAs, scanner selection, AWS topology, retention/compliance, disclosure contact, and incident objectives require later threat models/ADRs.
+
+## Implemented Platform Rules
+
+Configuration fails fast, rejects live-trading true, isolates browser variables, and never logs database/Redis URLs. Structured logs redact authorization, cookies, credentials, keys, seed phrases, and tokens. API defaults include exact CORS allowlist, Helmet, safe errors, body/time limits, and graceful shutdown. CI is read-only, SHA-pinned, production-secret-free, and runs audit/secret/lock/environment gates. No wallet/key dependency or transaction capability exists.

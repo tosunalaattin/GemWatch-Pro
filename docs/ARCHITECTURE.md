@@ -131,3 +131,7 @@ flowchart LR
 ## Trust and Safety Boundaries
 
 All external observations are untrusted. Chain/provider SDKs stay in adapters and never grant authority to a source. Cognito authenticates but application capabilities authorize. Administrative changes require stronger authorization/audit than reads. Research, paper, and live contexts remain separated. Wallet keys belong in a future dedicated boundary and never reach general services, clients, AI, telemetry, or Git. Risk Manager and emergency stop remain independent of strategy behavior.
+
+## Sprint 0.3 Implementation Baseline
+
+The repository now realizes only the platform edge: web, API, worker, and private contracts/domain/config/observability/testing packages. The API exposes only health probes; the web renders platform status; the worker validates dependencies and processes zero domain jobs. PostgreSQL/Redis connectivity exists without schema, migration, queue processor, product data, or authoritative Redis state.

@@ -2,8 +2,8 @@
 
 ## 1. Document Control
 
-- **Document version:** 0.2.0
-- **Product version baseline:** 0.0.2
+- **Document version:** 0.3.0
+- **Product version baseline:** 0.0.3
 - **Status:** Living architecture specification
 - **Date:** 2026-07-19
 - **Owner:** GemWatch Pro maintainers
@@ -13,7 +13,7 @@ Changes require review, traceability through Git, and an ADR when they establish
 
 ## 2. Purpose
 
-This specification defines product boundaries, safety constraints, accepted initial architecture, conceptual capabilities, and delivery direction. Accepted technology decisions are recorded in ADR-0002 through ADR-0019; exact dependency versions and implementation remain Sprint 0.3 work.
+This specification defines product boundaries, safety constraints, accepted architecture, conceptual capabilities, and delivery direction. ADR-0002 through ADR-0019 govern the initial stack. Sprint 0.3 implemented the development platform and health-only shells with exact dependency pins; domain capability remains unimplemented.
 
 ## 3. Product Vision
 
@@ -35,7 +35,7 @@ Early token markets are fragmented, adversarial, noisy, and time sensitive. No s
 
 ## 6. Non-Goals
 
-The project does not guarantee profit, eliminate financial risk, provide personalized financial advice, or treat an AI response as transaction authorization. Sprint 0.2 does not implement application logic, APIs, user interfaces, persistence, integrations, trading, or deployment. The initial chain, providers, score formulas, wallet custody, and live controls remain open until evaluated and recorded in later ADRs.
+The project does not guarantee profit, eliminate financial risk, provide personalized financial advice, or treat an AI response as transaction authorization. Sprint 0.3 implements only platform and health behavior. The initial chain, providers, product schema, score formulas, wallet custody, paper/live controls, and production deployment remain open until evaluated and recorded in later work.
 
 ## 7. Target Users
 

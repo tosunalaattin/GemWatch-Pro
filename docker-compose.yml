@@ -1,0 +1,47 @@
+name: gemwatch-pro-local
+
+services:
+  postgres:
+    image: postgres:18.4-trixie
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gemwatch_local
+      POSTGRES_USER: gemwatch_local
+      POSTGRES_PASSWORD: gemwatch_local_only
+    ports:
+      - '${POSTGRES_HOST_PORT:-5432}:5432'
+    volumes:
+      - gemwatch-postgres-data:/var/lib/postgresql
+      - ./infrastructure/docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U gemwatch_local -d gemwatch_local']
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    networks: [gemwatch-local]
+
+  redis:
+    image: redis:7.2.14-alpine3.21
+    restart: unless-stopped
+    command: ['redis-server', '/usr/local/etc/redis/redis.conf']
+    ports:
+      - '${REDIS_HOST_PORT:-6379}:6379'
+    volumes:
+      - gemwatch-redis-data:/data
+      - ./infrastructure/docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+    networks: [gemwatch-local]
+
+networks:
+  gemwatch-local:
+    name: gemwatch-pro-local
+
+volumes:
+  gemwatch-postgres-data:
+  gemwatch-redis-data:

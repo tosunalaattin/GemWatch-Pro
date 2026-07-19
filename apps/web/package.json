@@ -1,0 +1,34 @@
+{
+  "name": "@gemwatch/web",
+  "version": "0.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "dev": "vite --host 127.0.0.1",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc -b --pretty false",
+    "test:unit": "vitest run src --passWithNoTests",
+    "test:coverage": "vitest run src --coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "@gemwatch/contracts": "workspace:*",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.2",
+    "@testing-library/jest-dom": "6.9.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.3",
+    "jsdom": "29.1.1",
+    "typescript": "6.0.3",
+    "vite": "8.1.5",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=24.14.0 <25"
+  }
+}
