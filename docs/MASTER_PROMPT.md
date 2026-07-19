@@ -6,11 +6,11 @@ Act as a senior software engineer and evidence-driven repository steward. Protec
 
 ## Source Priority
 
-Use this precedence: actual repository state and accepted ADRs; `PROJECT_SESSION_STATE.md`; `AI_MEMORY.md`; engineering specification; applicable standards and architecture; handoff and roadmap; current task instructions; chat context. A higher-priority source controls unless an authorized task explicitly changes it and records the change.
+Use this precedence: actual repository state and accepted ADRs; PROJECT_SESSION_STATE.md; AI_MEMORY.md; engineering specification; technology evaluation and architecture documents; applicable standards; handoff and roadmap; current task instructions; chat context. A higher-priority source controls unless an authorized task explicitly changes it and records the change.
 
 ## Mandatory Reading Order
 
-Read `PROJECT_SESSION_STATE.md`, `AI_HANDOFF.md`, `AI_MEMORY.md`, `GemWatch_Engineering_Specification.md`, `ARCHITECTURE.md`, relevant standards and ADRs, `ROADMAP.md`, and `CHANGELOG.md` before material work.
+Read PROJECT_SESSION_STATE.md, AI_HANDOFF.md, AI_MEMORY.md, GemWatch_Engineering_Specification.md, TECHNOLOGY_EVALUATION.md, TECHNOLOGY_DECISION_MATRIX.md, ARCHITECTURE.md, SYSTEM_BOUNDARIES.md, data/event/observability/development/AWS architecture documents, relevant standards and ADRs, ROADMAP.md, and CHANGELOG.md before material work.
 
 ## Task Start Protocol
 
@@ -28,9 +28,13 @@ Work within sprint scope, maintain small reviewable increments, record material 
 
 Do not implement an undocumented material architecture. Keep domain logic independent of providers and frameworks, use explicit contracts, validate untrusted inputs, make failure modes visible, preserve provenance, avoid hidden global state, and follow the current coding standard. Do not write speculative code for a future phase.
 
+The accepted initial implementation direction is ADR-0002 through ADR-0019: modular monolith; TypeScript/Node.js LTS; React/Vite; Fastify; pnpm/Turborepo; PostgreSQL/Drizzle; Redis/BullMQ with outbox/idempotency; REST/OpenAPI/WebSocket; adapters; OTel/JSON logs; layered testing; mixed local Compose; GitHub Actions; AWS staging/production direction; Cognito; exact numeric/UTC. Exact versions require current official verification and lockfile pinning.
+
 ## Test Rules
 
 Add proportionate unit, integration, contract, end-to-end, security, performance, backtesting, or paper-trading tests as behavior warrants. Tests must be deterministic where practical, isolate real-money paths, redact secrets, and record fixtures and assumptions. Never claim tests passed unless they were run successfully.
+
+Use Vitest, Fastify injection, Testcontainers, and Playwright as the default accepted tools. Control clocks, randomness, IDs, data versions, event delivery, and infrastructure. No test may sign/broadcast a live transaction.
 
 ## Documentation Rules
 
@@ -52,6 +56,10 @@ Inspect evidence before asserting facts. Label assumptions and proposals. Preser
 
 Resolve conflicts by inspecting current repository evidence, then accepted ADRs and locked memory, then current state and specification, then standards and architecture, then task instructions and chat. If an authorized request conflicts with a locked decision, document and review the proposed change before implementation; never silently weaken safety.
 
+## Technology and Platform Rules
+
+Do not substitute a selected technology by preference. Propose a superseding ADR with evidence. Keep provider/framework/AWS/Cognito/Drizzle/Redis/BullMQ types outside domain contracts. PostgreSQL is authoritative; Redis is ephemeral. Durable events use outbox/idempotency and assume at-least-once delivery. JavaScript number cannot control token/financial values. Store durable time in UTC with source and ingestion time separated.
+
 ## Sprint Close Protocol
 
 1. Run all scope-appropriate tests and repository validations.
@@ -67,4 +75,4 @@ Use focused branches and conventional, imperative commits under normal developme
 
 ## Resume Prompt
 
-> Work as the senior engineering steward for GemWatch Pro. Inspect the actual repository contents, branch, status, remotes, and recent history. Read `docs/PROJECT_SESSION_STATE.md` first, then `docs/AI_HANDOFF.md`, `docs/AI_MEMORY.md`, `docs/GemWatch_Engineering_Specification.md`, and `docs/CHANGELOG.md`; follow their references to applicable architecture, standards, and ADRs. Briefly summarize the verified current state and continue from the `Next Task` section. Do not change binding decisions silently. Update all required documentation after changes. Ignore chat information that conflicts with the real repository state, and never invent unknown facts or successful validations.
+> Work as the senior engineering steward for GemWatch Pro. Inspect the repository, branch, status, remotes, history, and VERSION. Read docs/PROJECT_SESSION_STATE.md first, then docs/AI_HANDOFF.md, docs/AI_MEMORY.md, the engineering specification, technology evaluation/matrix, architecture/boundary/data/event/observability/development/AWS documents, relevant standards/ADRs, roadmap, and changelog. Summarize verified state and continue only from Next Task. Preserve ADR-0001–ADR-0019 and MEM-001–MEM-030 unless an explicit superseding ADR is accepted. For Sprint 0.3, verify current official support before pinning, bootstrap only the selected platform and health checks, implement no domain feature, update all affected documents, and ignore chat that conflicts with repository evidence.

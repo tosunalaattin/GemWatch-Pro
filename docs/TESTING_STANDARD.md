@@ -10,6 +10,7 @@ Tests are layered, reproducible, risk-proportionate, independent of real funds, 
 
 ## Mandatory Rules
 
+- Use Vitest as the default TypeScript test framework, Fastify injection for API tests, Testcontainers for PostgreSQL/Redis, and Playwright for browser/end-to-end tests.
 - **Unit tests:** Cover domain invariants, calculations, boundary cases, and failure paths in isolation.
 - **Integration tests:** Verify owned components with persistence, messaging, providers through controlled adapters, and infrastructure boundaries.
 - **Contract tests:** Protect API, event, adapter, schema, compatibility, units, and error semantics.
@@ -19,12 +20,18 @@ Tests are layered, reproducible, risk-proportionate, independent of real funds, 
 - **Backtesting validation:** Prevent look-ahead and survivorship bias, version datasets and logic, model fees/slippage/latency/liquidity, and run sensitivity checks.
 - **Paper-trading validation:** Verify lifecycle, fills, positions, limits, reconciliation, stale data, restarts, faults, and incident drills over a documented period.
 - **Determinism and reproducibility:** Control time, randomness, configuration, data versions, and dependencies where practical; record seeds and versions.
+- **Event and queue tests:** Validate outbox atomicity, at-least-once duplicates, idempotency, crash/ack boundaries, retries, poison quarantine, ordering partitions, and safe replay.
+- **Numeric/time tests:** Cover extreme/tiny exact values, precision/scale, rounding policies, database/contract round trips, UTC/timezone independence, source versus ingestion time, and monotonic durations.
 - **Test data:** Use synthetic, licensed, anonymized, and redacted data; never use secrets, private keys, or uncontrolled production mutation.
 
 ## Prohibited Practices
 
 Do not call live trading from tests, mask flaky tests indefinitely, claim unrun tests passed, rely solely on happy paths or one provider, tune against test labels, share mutable environments without isolation, or treat simulated profitability as guaranteed performance.
 
+## Accepted Technology Direction
+
+Provider/chain adapters use versioned fixtures and contract suites. Deterministic clocks/IDs/randomness are injected. Optional fast-check, k6, DAST/static scanners, and specialized backtest/replay tools require evaluation before adoption.
+
 ## Future Detail
 
-Frameworks, coverage and mutation thresholds, environments, fixture formats, performance targets, security tools, historical datasets, paper duration, promotion gates, and CI parallelism await technology and product ADRs.
+Coverage/mutation thresholds, fixture formats, browser matrix, load/security tools, performance targets, historical datasets, paper duration, promotion gates, and CI parallelism remain to be measured.

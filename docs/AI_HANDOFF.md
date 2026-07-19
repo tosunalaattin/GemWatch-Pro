@@ -2,59 +2,71 @@
 
 ## Project Summary
 
-GemWatch Pro is a planned modular platform for discovery and evidence-based assessment of new crypto assets, progressing from research and backtesting to paper trading and only later to tightly controlled live execution. Scores and AI analysis are decision support, not guarantees or transaction authority.
+GemWatch Pro is a planned modular on-chain intelligence platform progressing from evidence collection and research through backtesting and paper trading to, only after later safety gates, controlled live execution. Scores and AI are advisory; no profitability or authorization is implied.
 
 ## Current Stage
 
-Foundation, after completion of Sprint 0.1. The repository contains documentation and placeholders only. Application code, integrations, persistence, deployments, paper trading, wallet integration, and live trading have not started.
+Foundation after completed Sprint 0.2. Product version is 0.0.2 and specification version is 0.2.0. Architecture and initial technology decisions are accepted, but the development platform is not implemented. Application code, integrations, schema, deployment, paper trading, wallets, and live trading have not started.
+
+- Application code: Not started
+- Production deployment: Not started
+- Live trading: Disabled / Not implemented
+- Paper trading: Not implemented
+- Development platform: Specified, not implemented
 
 ## Completed Work
 
-The monorepo skeleton, repository policies, GitHub templates, specification 0.1.0, conceptual architecture, roadmap, engineering standards, ADR process, ADR-0001, persistent AI protocol and memory, session state, handoff, changelog, license, and version baseline are established.
+- Sprint 0.1 governance/documentation/repository skeleton
+- Sprint 0.2 official-source technology evaluation and weighted matrix
+- System boundaries and data/event/observability/development/AWS architecture
+- ADR-0002–ADR-0019 accepted and MEM-013–MEM-030 recorded
+- Existing specification, architecture, roadmap, standards, state, memory, protocol, and changelog synchronized
+
+## Accepted Initial Architecture
+
+Modular monolith first; TypeScript on supported Node.js LTS; React/Vite; Fastify; pnpm workspaces/Turborepo; PostgreSQL/Drizzle reviewed SQL migrations; Redis/BullMQ with PostgreSQL outbox/idempotency; REST/OpenAPI/WebSocket; provider/chain adapters; OpenTelemetry plus structured JSON logs; Vitest/Testcontainers/Playwright; native Node plus Compose local infrastructure; GitHub Actions; isolated AWS-host staging; ECS Fargate/RDS/managed Redis/S3/Secrets Manager production direction; Cognito OIDC + PKCE; exact numeric and UTC policies.
 
 ## Not Yet Done
 
-No technology, provider, chain, database, runtime, deployment target, scoring formula, identity model, custody model, or service contract is approved. No application behavior exists. Do not infer these choices from placeholder directory names.
+No package.json, lockfile, runtime dependency, Compose file, workflow, database schema/migration, API endpoint, React screen, server, provider SDK, chain selection, AWS connection/resource, credential, wallet, or trade code exists. Exact package/container/action versions are not pinned. UI supporting libraries, initial chain/providers, detailed schemas, telemetry backend, AWS sizes/region/RTO/RPO, and live custody remain deferred.
 
 ## Binding Decisions
 
-Read `AI_MEMORY.md` for the canonical numbered list. The repository is the source of truth; documentation precedes implementation; providers use adapters; the Trade Engine cannot bypass the Risk Manager; paper trading precedes live trading; live trading is opt-in and disabled by default; secrets stay out of Git; AI cannot independently authorize trades; security evidence should be corroborated; material technology choices require ADRs.
-
-## Principles That Must Not Be Changed Silently
-
-Do not weaken financial-safety gates, secret isolation, auditability, evidence provenance, deny-by-default behavior, provider boundaries, or the separation of analysis from authorization. Any proposed change requires explicit rationale, impact analysis, and the applicable ADR process.
+MEM-001–MEM-030 and ADR-0001–ADR-0019 are canonical. Repository truth, documentation first, provider adapters, security corroboration, Risk Manager non-bypass, paper-before-live, live opt-in/off-by-default, secret exclusion, AI non-authorization, audit immutability, paper/live separation, exact arithmetic, and application-owned authorization cannot be weakened silently.
 
 ## Required Reading Order
 
-1. `PROJECT_SESSION_STATE.md`
-2. `AI_HANDOFF.md`
-3. `AI_MEMORY.md`
-4. `GemWatch_Engineering_Specification.md`
-5. `ARCHITECTURE.md`
-6. Relevant standards and `adr/` records
-7. `ROADMAP.md`
-8. `CHANGELOG.md`
+1. PROJECT_SESSION_STATE.md
+2. AI_HANDOFF.md
+3. AI_MEMORY.md
+4. GemWatch_Engineering_Specification.md
+5. TECHNOLOGY_EVALUATION.md and TECHNOLOGY_DECISION_MATRIX.md
+6. ARCHITECTURE.md and SYSTEM_BOUNDARIES.md
+7. DATA_ARCHITECTURE.md, EVENT_ARCHITECTURE.md, OBSERVABILITY_ARCHITECTURE.md
+8. DEVELOPMENT_PLATFORM.md and AWS_DEPLOYMENT_ARCHITECTURE.md
+9. Relevant standards and ADRs
+10. ROADMAP.md and CHANGELOG.md
 
-## Sprint 0.1 Outcome
+## Sprint 0.2 Outcome
 
-The governance and documentation foundation is complete at product version 0.0.1 and specification version 0.1.0. The repository can communicate current state and next work without relying on chat history.
+The first implementable technical architecture is documented and accepted. The architecture remains a plan, not working software or production readiness. No chain/provider or live capability was selected or implemented.
 
 ## Next Task
 
-Execute Sprint 0.2 — Architecture Decision and Technology Evaluation. Define weighted evaluation criteria, research viable alternatives, document constraints and tradeoffs, and create ADRs for choices that are actually accepted. Do not write application features or preselect a stack.
+Sprint 0.3 — Development Platform Bootstrap. Pin the supported Node LTS and pnpm; create workspace/root tooling, manifests, formatting/lint/type/test/build/documentation/security gates, local PostgreSQL/Redis Compose services, environment examples, base GitHub Actions, and minimal health-check-only web/API/worker shells. Implement no domain feature.
 
 ## Output and Validation Rules
 
-Keep repository artifacts in English. Before closing work, verify requested files, tests appropriate to scope, links, diagrams, secrets, formatting, Git diff, and documentation consistency. User-facing sprint summaries may follow the user's requested language. Report failed or skipped checks honestly.
+Repository artifacts are English; user sprint reports follow requested language. Before closure validate structure, links, Mermaid, ADR/memory/state consistency, versions, secrets, tests, staged diff, commit/push, and local/remote SHA. Report every skipped/failed check honestly.
 
-## Evidence, Assumptions, and Hallucination
+## Evidence and Assumptions
 
-Never state unknown provider behavior, product capability, performance, regulatory status, or repository state as fact. Label assumptions, cite or record evidence, preserve open questions, and prefer an explicit unresolved item to fabricated certainty.
+Verify current official support, compatibility, security status, licensing, and platform constraints before pinning. Never invent provider behavior, benchmark performance, AWS pricing, application capability, or successful test/deployment state. Preserve external-verification items.
 
 ## Repository-First Rule
 
-Before making changes, inspect the actual working tree, branch, remotes, recent history, current state, and relevant documentation. Repository evidence overrides contradictory chat context. Preserve unrelated user changes.
+Inspect working tree, branch, remote, history, VERSION, state, and accepted ADRs before edits. Repository evidence overrides chat. Preserve unrelated user work and do not reinterpret placeholder directories as implemented services.
 
 ## Sprint-Close Updates
 
-At every sprint close, update at minimum `PROJECT_SESSION_STATE.md`, `AI_HANDOFF.md`, and `CHANGELOG.md`; update `AI_MEMORY.md`, the specification, architecture, roadmap, standards, and ADRs whenever decisions or scope affect them. Define a clear and verifiable next task.
+Every sprint updates PROJECT_SESSION_STATE.md, AI_HANDOFF.md, CHANGELOG.md, and all materially affected memory, specification, architecture, roadmap, standards, ADRs, and version metadata. Next Task must be explicit and verifiable.

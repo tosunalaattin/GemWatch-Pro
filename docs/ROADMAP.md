@@ -1,23 +1,23 @@
 # GemWatch Pro Roadmap
 
-This roadmap is ordered by dependency and safety maturity. Dates and technologies are intentionally unset. Completing a phase requires evidence against its exit criteria; later-phase experimentation cannot waive earlier safety gates.
+This roadmap is ordered by dependency and safety maturity. Sprint 0.2 selected the initial architecture through ADR-0002–ADR-0019; exact implementation versions remain unpinned until Sprint 0.3. Completing a phase requires evidence against exit criteria, and later work cannot waive earlier safety gates.
 
 ## Phase 0: Governance and Architecture
 
 - **Objective:** Establish durable project memory, scope, conceptual boundaries, and decision governance.
-- **Principal deliverables:** Repository skeleton, specification, architecture, standards, roadmap, ADR process, state, handoff, and contribution workflow.
+- **Principal deliverables:** Repository skeleton, specification, standards, architecture evaluation, bounded contexts, data/event/observability/AWS design, ADR process, state, handoff, and contribution workflow.
 - **Entry criteria:** Repository ownership and product vision are identified.
-- **Exit criteria:** Required documents are consistent, reviewed, versioned, and provide an explicit next task.
+- **Exit criteria:** Required documents are consistent, reviewed, versioned; initial technology decisions are accepted; Sprint 0.3 has an explicit scope.
 - **Major risks:** Premature technology choices, stale documents, hidden decisions, and scope expansion.
 - **Explicit exclusions:** Application code, integrations, persistence, UI, deployment, paper trading, and live trading.
 
 ## Phase 1: Development Platform and Core Foundations
 
-- **Objective:** Select and establish a secure, reproducible development platform and shared contracts.
-- **Principal deliverables:** Accepted technology ADRs, local workflow, CI quality gates, configuration model, contract conventions, observability baseline, and test harness.
-- **Entry criteria:** Phase 0 exit criteria and agreed evaluation method.
-- **Exit criteria:** Reproducible setup and CI validate a minimal foundation with no business feature claims.
-- **Major risks:** Stack lock-in, weak secret handling, irreproducible tooling, and premature service decomposition.
+- **Objective:** Establish the accepted secure, reproducible development platform and shared-contract foundation.
+- **Principal deliverables:** Node/pnpm/Turborepo workspace, health-only React/Fastify/worker shells, local PostgreSQL/Redis Compose, strict quality tooling, base GitHub Actions, configuration examples, OTel/logging health baseline, and test harness.
+- **Entry criteria:** Phase 0 exit criteria and accepted ADR-0002–ADR-0019.
+- **Exit criteria:** Clean Windows/CI bootstrap, frozen lockfile, repeatable build/tests, healthy local infrastructure, documentation/security gates, and no domain feature claims.
+- **Major risks:** Unsupported versions, dependency/install-script compromise, unsafe examples/secrets, Windows/WSL variance, cache misconfiguration, and premature domain scaffolding.
 - **Explicit exclusions:** Production trading, broad provider ingestion, and unvalidated scoring.
 
 ## Phase 2: Token Discovery

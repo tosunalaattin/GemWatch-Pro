@@ -4,7 +4,11 @@ GemWatch Pro is a planned modular on-chain alpha intelligence platform for disco
 
 ## Current Status
 
-The project is in the early architecture and documentation stage. Application code, production deployment, paper trading, wallet integration, and live trading have not started. Live trading is disabled and not implemented.
+The project is in the architecture and development-platform specification stage. Sprint 0.2 selected the initial technical architecture, but application code, production deployment, paper trading, wallet integration, and live trading have not started. Live trading is disabled and not implemented.
+
+## Initial Architecture
+
+The accepted starting direction is a modular monolith implemented primarily in TypeScript on a supported Node.js LTS line, with React/Vite, Fastify, pnpm/Turborepo, PostgreSQL/Drizzle, Redis/BullMQ, REST/OpenAPI plus WebSocket, OpenTelemetry, and a Docker Compose-based local platform. AWS staging and production directions are documented separately. Exact dependency versions will be pinned during Sprint 0.3.
 
 ## Capability Vision
 
@@ -30,8 +34,11 @@ Crypto assets and automated execution involve substantial technical and financia
 3. [AI Memory](docs/AI_MEMORY.md)
 4. [Engineering Specification](docs/GemWatch_Engineering_Specification.md)
 5. [Architecture](docs/ARCHITECTURE.md)
-6. [Roadmap](docs/ROADMAP.md)
-7. [Changelog](docs/CHANGELOG.md)
+6. [Technology Evaluation](docs/TECHNOLOGY_EVALUATION.md)
+7. [System Boundaries](docs/SYSTEM_BOUNDARIES.md)
+8. [Development Platform](docs/DEVELOPMENT_PLATFORM.md)
+9. [Roadmap](docs/ROADMAP.md)
+10. [Changelog](docs/CHANGELOG.md)
 
 ## Development Workflow
 

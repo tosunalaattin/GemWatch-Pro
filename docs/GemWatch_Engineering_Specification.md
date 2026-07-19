@@ -2,9 +2,9 @@
 
 ## 1. Document Control
 
-- **Document version:** 0.1.0
-- **Product version baseline:** 0.0.1
-- **Status:** Living foundation specification
+- **Document version:** 0.2.0
+- **Product version baseline:** 0.0.2
+- **Status:** Living architecture specification
 - **Date:** 2026-07-19
 - **Owner:** GemWatch Pro maintainers
 - **Source of truth:** This repository
@@ -13,7 +13,7 @@ Changes require review, traceability through Git, and an ADR when they establish
 
 ## 2. Purpose
 
-This specification defines the intended product boundaries, safety constraints, conceptual capabilities, and delivery direction for GemWatch Pro. It guides later design and implementation without selecting a programming language, framework, database, deployment platform, chain, or vendor in advance.
+This specification defines product boundaries, safety constraints, accepted initial architecture, conceptual capabilities, and delivery direction. Accepted technology decisions are recorded in ADR-0002 through ADR-0019; exact dependency versions and implementation remain Sprint 0.3 work.
 
 ## 3. Product Vision
 
@@ -35,7 +35,7 @@ Early token markets are fragmented, adversarial, noisy, and time sensitive. No s
 
 ## 6. Non-Goals
 
-The project does not guarantee profit, eliminate financial risk, provide personalized financial advice, or treat an AI response as transaction authorization. Sprint 0.1 does not implement application logic, APIs, user interfaces, persistence, integrations, trading, or deployment. Technology and provider choices remain open until evaluated and recorded in ADRs.
+The project does not guarantee profit, eliminate financial risk, provide personalized financial advice, or treat an AI response as transaction authorization. Sprint 0.2 does not implement application logic, APIs, user interfaces, persistence, integrations, trading, or deployment. The initial chain, providers, score formulas, wallet custody, and live controls remain open until evaluated and recorded in later ADRs.
 
 ## 7. Target Users
 
@@ -51,12 +51,12 @@ The repository is the source of truth and documentation precedes implementation.
 
 ## 10. High-Level System Context
 
-Client applications interact through an API boundary rather than internal services. Discovery and provider adapters introduce observations. Analysis and scoring services derive evidence and rankings. Strategy and paper-trading components consume approved, versioned signals. A future Trade Engine can accept execution intents only through the Risk Manager and execution policy gates. Persistence, messaging, observability, identity, configuration, and audit facilities support the whole system. See [Architecture](ARCHITECTURE.md).
+The accepted starting architecture is a modular monolith with explicit bounded contexts, a React/Vite web client, a Fastify API boundary, and independently runnable Node.js workers. Provider and chain adapters introduce observations. PostgreSQL owns transactional truth; Redis supports ephemeral state and BullMQ jobs through an internal port and transactional outbox. A future Trade Engine can accept execution authorization only from Risk Manager. See [Architecture](ARCHITECTURE.md), [System Boundaries](SYSTEM_BOUNDARIES.md), and [Technology Evaluation](TECHNOLOGY_EVALUATION.md).
 
 ## 11. Functional Requirements
 
 - The system shall record candidate assets, sources, observation times, chain context, and confidence or quality indicators.
-- Provider-specific formats shall be normalized through adapters before domain use.
+- Provider-specific formats and SDK types shall be normalized through adapters before domain use.
 - Security analysis shall preserve raw evidence, derived findings, freshness, and conflicting observations.
 - Scoring shall expose score version, contributing factors, missing inputs, and explanatory output.
 - Strategy evaluation shall consume immutable or version-addressable snapshots.
@@ -64,12 +64,14 @@ Client applications interact through an API boundary rather than internal servic
 - Notifications shall communicate severity, evidence, and uncertainty without implying guaranteed returns.
 - Any future transaction intent shall pass authorization, simulation, policy, exposure, position, allowlist/denylist, and emergency-stop controls in the Risk Manager path.
 - Material actions and configuration changes shall produce tamper-evident audit events.
+- Durable cross-context publication shall use a transactional outbox and idempotent, at-least-once consumers.
+- Token and financial quantities shall use integer or exact decimal-safe representations; durable timestamps shall be UTC with source and ingestion time separated.
 
 Detailed acceptance criteria, event schemas, service-level objectives, and user workflows remain future work.
 
 ## 12. Non-Functional Requirements
 
-The future platform should be secure, observable, testable, modular, recoverable, and horizontally evolvable. Requirements will include measurable latency and freshness, availability by capability, idempotency, rate-limit tolerance, data-quality reporting, replayability, deterministic research runs, graceful degradation, bounded resource use, accessibility, privacy, and maintainability. Numeric targets must be based on validated product and provider constraints, not invented during this sprint.
+The platform shall be secure, observable, testable, modular, recoverable, and horizontally evolvable. OpenTelemetry traces/metrics, structured JSON logs, explicit health, provenance, deterministic tests, bounded queues/retries, rate-limit tolerance, accessibility, privacy, and restore evidence are required directions. Numeric SLOs must be based on representative workloads.
 
 ## 13. Security and Safety Constraints
 
@@ -77,7 +79,7 @@ Secrets, private keys, and seed phrases must never enter the repository or gener
 
 ## 14. Data Source Strategy
 
-Potential sources include DEX/on-chain providers, market aggregators, direct RPC and WebSocket endpoints, contract-analysis services, social sources, and internally derived observations. No provider is selected here. Every integration requires an adapter, capability and limitation documentation, provenance, timestamps, chain identity, rate-limit handling, health signals, normalization, and terms-of-use review. Security-critical conclusions should use independent corroboration where practical, and disagreements or missing data must remain visible.
+Potential sources include DEX/on-chain providers, market aggregators, direct RPC/WebSocket endpoints, contract-analysis services, social sources, and internally derived observations. No provider or initial chain is selected here. Every integration implements the accepted adapter envelope with provider/request identity, normalized result, raw reference, provenance, timestamps, freshness/confidence, rate-limit state, timeout, classified retryability, circuit/health status, and terms review. Security-critical conclusions use independent corroboration where practical.
 
 ## 15. Scoring Model Concept
 
@@ -97,7 +99,7 @@ Audit records must identify event time, actor or service identity, correlation i
 
 ## 18. Deployment Context
 
-Planned contexts are local development, CI, development, staging, and production. Their topology and technology are undecided. Configuration and credentials must be isolated by environment; non-production must not silently connect to production wallets or data mutation paths. Production changes require review, automated evidence, observability, rollback planning, and separation of duties appropriate to risk.
+Local development uses native Node/pnpm processes with Docker Compose PostgreSQL/Redis. GitHub Actions provides CI. Staging may use isolated Compose on the existing AWS host only with separation from Astro Sling. Production direction is ECS Fargate with RDS PostgreSQL, managed Redis after compatibility validation, S3, Secrets Manager, private networking, managed TLS/ingress, and OTel-compatible telemetry. Configuration and credentials remain isolated by environment; production readiness is not assumed.
 
 ## 19. Delivery Phases
 
@@ -105,7 +107,7 @@ Delivery begins with governance and architecture, then development foundations, 
 
 ## 20. Open Questions
 
-Open questions include initial chain and provider coverage, latency and availability targets, data licensing and retention, identity and tenancy model, scoring calibration, historical ground truth, supported strategy types, regulatory constraints, wallet custody model, human approval policy, infrastructure topology, technology stack, budget limits, and incident ownership. Unknowns must remain explicit until research and ADRs resolve them.
+Open questions include initial chain/provider coverage, latency/availability targets, data licensing/retention, detailed tenancy and Cognito configuration, scoring calibration, historical ground truth, UI supporting libraries, decimal library/scales, Redis managed-service compatibility, AWS region/sizing/RTO/RPO, regulatory constraints, wallet custody, live approval policy, budgets, and incident ownership.
 
 ## 21. Glossary
 
