@@ -15,7 +15,7 @@ function dependency(fail = false): WorkerDependency & { close: ReturnType<typeof
 const logger = createLogger({
   service: 'test-worker',
   environment: 'test',
-  version: '0.0.3',
+  version: '0.0.4',
   level: 'silent',
 });
 

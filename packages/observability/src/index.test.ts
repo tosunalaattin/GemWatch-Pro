@@ -8,7 +8,7 @@ describe('observability foundation', () => {
     const logger = createLogger({
       service: 'test',
       environment: 'test',
-      version: '0.0.3',
+      version: '0.0.4',
       level: 'info',
       destination: { write: (record) => records.push(record) },
     });

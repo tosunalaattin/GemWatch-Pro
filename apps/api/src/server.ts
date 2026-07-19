@@ -37,7 +37,7 @@ export async function buildServer(options: BuildServerOptions): Promise<FastifyI
   });
   await app.register(rateLimit, { max: 120, timeWindow: '1 minute' });
   await app.register(swagger, {
-    openapi: { info: { title: 'GemWatch Pro API', version: '0.0.3' } },
+    openapi: { info: { title: 'GemWatch Pro API', version: '0.0.4' } },
   });
   if (!options.production) {
     await app.register(swaggerUi, { routePrefix: '/documentation' });

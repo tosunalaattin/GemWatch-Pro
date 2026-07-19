@@ -19,7 +19,7 @@ describe('platform shell', () => {
               contractVersion: '1.0.0',
               status: 'ok',
               service: 'gemwatch-api',
-              version: '0.0.3',
+              version: '0.0.4',
               timestamp: '2026-07-19T12:00:00.000Z',
               correlationId: 'test',
             }),
@@ -30,7 +30,7 @@ describe('platform shell', () => {
     render(<App />);
     expect(screen.getByText('Development Platform Bootstrap')).toBeInTheDocument();
     expect(screen.getByText('Live trading is disabled and not implemented.')).toBeInTheDocument();
-    expect(screen.getByText('0.0.3')).toBeInTheDocument();
+    expect(screen.getByText('0.0.4')).toBeInTheDocument();
     await waitFor(() => expect(screen.getByTestId('api-status')).toHaveTextContent('healthy'));
     expect(document.body.textContent).not.toContain('DATABASE_URL');
   });

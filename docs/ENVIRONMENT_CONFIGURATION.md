@@ -6,13 +6,13 @@ Configuration is parsed once at server/worker boundaries and fails fast without 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `NODE_ENV` | Server | No | enum / `development` | No | No | `development` | development, test, or production; production uses safe errors/JSON logs |
 | `APP_ENV` | All | No | string / `local` | No | No | `local` | Non-empty; production value must identify its environment |
-| `APP_VERSION` | Server | No | literal / `0.0.3` | No | No | `0.0.3` | Must match repository version |
+| `APP_VERSION` | Server | No | literal / `0.0.4` | No | No | `0.0.4` | Must match repository version |
 | `LOG_LEVEL` | Server | No | enum / `info` | No | No | `info` | Approved Pino levels only |
 | `API_HOST` | API | No | host / `127.0.0.1` | No | No | `127.0.0.1` | Production bind is deployment-controlled |
 | `API_PORT` | API | No | integer / `3000` | No | No | `3000` | 1–65535 |
 | `WEB_PORT` | Web/dev | No | integer / `5173` | No | No | `5173` | 1–65535 |
 | `WEB_API_BASE_URL` | Server/docs | No | URL / localhost | No | No | `http://127.0.0.1:3000` | HTTP(S); production must use approved TLS origin |
-| `VITE_APP_VERSION` | Browser | No | string / `0.0.3` | No | Yes | `0.0.3` | Public metadata only |
+| `VITE_APP_VERSION` | Browser | No | string / `0.0.4` | No | Yes | `0.0.4` | Public metadata only |
 | `VITE_APP_ENV` | Browser | No | string / `local` | No | Yes | `local` | Public environment label only |
 | `VITE_API_BASE_URL` | Browser | No | URL / localhost | No | Yes | `http://127.0.0.1:3000` | HTTP(S), no embedded credentials; production allowlisted origin |
 | `DATABASE_URL` | API/worker | Yes | URL | Yes | No | local-only PostgreSQL URL | Valid URL; secret store in production; never logged |

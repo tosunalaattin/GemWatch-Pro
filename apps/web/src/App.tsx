@@ -27,7 +27,7 @@ export function App() {
         </div>
         <div>
           <dt>Application version</dt>
-          <dd>{import.meta.env.VITE_APP_VERSION ?? '0.0.3'}</dd>
+          <dd>{import.meta.env.VITE_APP_VERSION ?? '0.0.4'}</dd>
         </div>
         <div>
           <dt>Environment</dt>

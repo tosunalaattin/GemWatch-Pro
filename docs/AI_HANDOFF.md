@@ -2,17 +2,18 @@
 
 ## Project Summary
 
-GemWatch Pro is a planned modular on-chain intelligence platform. Product version 0.0.3 provides only a development platform and health shells. Scores and AI remain advisory concepts; no financial result or transaction authority is implied.
+GemWatch Pro is a planned modular on-chain intelligence platform. Product version 0.0.4 provides only a validated development platform and health shells. Scores and AI remain advisory concepts; no financial result or transaction authority is implied.
 
 ## Current Stage and Sprint Result
 
-Foundation, after completed Sprint 0.3. The repository now has a Node/pnpm workspace, React/Vite web shell, Fastify API shell, worker lifecycle, shared foundation packages, Compose PostgreSQL/Redis, layered tests, and CI/security gates. Specification version is 0.3.0.
+Foundation, after completed Sprint 0.3.1. The repository has a Node/pnpm workspace, React/Vite web shell, Fastify API shell, worker lifecycle, shared foundation packages, loopback-only Compose PostgreSQL/Redis, layered tests, and CI/security gates. Real integration, API fault/recovery, worker signals, Playwright smoke, and hosted workflows are validated. Specification version remains 0.3.0.
 
 ## Completed Work
 
 - Sprint 0.1 governance and repository skeleton
 - Sprint 0.2 architecture/technology research with ADR-0002–ADR-0019
 - Sprint 0.3 exact manifests/lockfile, platform tooling, health contract/endpoints, safe configuration/logging/telemetry, local infrastructure, CI, tests, and operational documentation
+- Sprint 0.3.1 Docker/Compose stabilization, real Testcontainers integration, API readiness/fault recovery, worker runtime signals, deterministic E2E startup, ESLint flat-config cleanup, and hosted workflow verification
 
 ## Not Yet Done
 

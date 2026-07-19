@@ -18,7 +18,7 @@ async function create(postgres = ok, redis = ok) {
     logger: createLogger({
       service: 'test',
       environment: 'test',
-      version: '0.0.3',
+      version: '0.0.4',
       level: 'silent',
     }),
     corsAllowedOrigins: ['http://127.0.0.1:5173'],

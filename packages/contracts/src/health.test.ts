@@ -8,7 +8,7 @@ describe('health contract', () => {
       contractVersion: HEALTH_CONTRACT_VERSION,
       status: 'ok',
       service: 'test',
-      version: '0.0.3',
+      version: '0.0.4',
       timestamp: '2026-07-19T12:00:00.000Z',
       correlationId: 'test-correlation',
     });
@@ -21,7 +21,7 @@ describe('health contract', () => {
         contractVersion: HEALTH_CONTRACT_VERSION,
         status: 'ok',
         service: 'test',
-        version: '0.0.3',
+        version: '0.0.4',
         timestamp: '2026-07-19',
         correlationId: 'test-correlation',
       }),

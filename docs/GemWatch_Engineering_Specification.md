@@ -3,7 +3,7 @@
 ## 1. Document Control
 
 - **Document version:** 0.3.0
-- **Product version baseline:** 0.0.3
+- **Product version baseline:** 0.0.4
 - **Status:** Living architecture specification
 - **Date:** 2026-07-19
 - **Owner:** GemWatch Pro maintainers

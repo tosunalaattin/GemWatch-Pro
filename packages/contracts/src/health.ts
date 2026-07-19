@@ -9,7 +9,7 @@ export const healthResponseSchema = z.object({
   contractVersion: z.literal(HEALTH_CONTRACT_VERSION),
   status: healthStatusSchema,
   service: z.string().min(1),
-  version: z.literal('0.0.3'),
+  version: z.literal('0.0.4'),
   timestamp: z.iso.datetime({ offset: true }),
   correlationId: z.string().min(1),
   dependencies: z

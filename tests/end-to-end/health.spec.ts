@@ -2,7 +2,10 @@ import { expect, test } from '@playwright/test';
 
 test('shows platform and API health safety status', async ({ page }) => {
   await page.goto('/');
+  await expect(page.getByText('GemWatch Pro', { exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Development Platform Bootstrap' })).toBeVisible();
   await expect(page.getByTestId('api-status')).toHaveText('healthy');
+  await expect(page.getByText('0.0.4', { exact: true })).toBeVisible();
+  await expect(page.getByText('test', { exact: true })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveText('Live trading is disabled and not implemented.');
 });

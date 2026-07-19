@@ -1,4 +1,0 @@
-# ESLint flat-config ignores are authoritative in eslint.config.js.
-node_modules/
-**/dist/
-**/coverage/

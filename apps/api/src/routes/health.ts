@@ -22,7 +22,7 @@ const responseSchema = {
     contractVersion: { type: 'string', const: HEALTH_CONTRACT_VERSION },
     status: { type: 'string', enum: ['ok', 'degraded', 'unavailable'] },
     service: { type: 'string' },
-    version: { type: 'string', const: '0.0.3' },
+    version: { type: 'string', const: '0.0.4' },
     timestamp: { type: 'string', format: 'date-time' },
     correlationId: { type: 'string' },
     dependencies: {
@@ -41,7 +41,7 @@ function baseResponse(correlationId: string): Omit<HealthResponse, 'status'> {
   return {
     contractVersion: HEALTH_CONTRACT_VERSION,
     service: 'gemwatch-api',
-    version: '0.0.3',
+    version: '0.0.4',
     timestamp: new Date().toISOString(),
     correlationId,
   };

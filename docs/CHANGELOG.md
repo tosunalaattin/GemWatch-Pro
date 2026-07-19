@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.0.4] - 2026-07-19
+
+### Fixed
+
+- Restricted PostgreSQL and Redis host publishing to loopback and corrected local Redis host-client readiness behavior.
+- Replaced watcher-based Playwright startup with deterministic API build/start and web build/preview commands using explicit health URLs and child-process cleanup.
+- Removed deprecated `.eslintignore` usage and consolidated generated-output ignores in ESLint flat config.
+
+### Changed
+
+- Upgraded the SHA-pinned pnpm setup action to Node.js 24-compatible v6.0.8.
+- Expanded integration coverage for bounded dependency timeouts, redacted failures, and production-like database credential rejection.
+
+### Validated
+
+- Docker Desktop Linux engine, image pulls, Compose health, random-port Testcontainers, API dependency fault/recovery, worker heartbeat and SIGINT/SIGTERM shutdown, Chromium smoke flow, and hosted GitHub Actions runs.
+
+### Documentation
+
+- Recorded the actual Docker, OneDrive, health, dependency, E2E, CI, state, and handoff results from Sprint 0.3.1.
+
 ## [0.0.3] - 2026-07-19
 
 ### Added

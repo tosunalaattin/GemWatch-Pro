@@ -4,7 +4,7 @@ GemWatch Pro is a planned modular on-chain intelligence platform. The repository
 
 ## Current Status
 
-Sprint 0.3 bootstrapped the modular-monolith workspace with a React/Vite web shell, Fastify API shell, worker shell, shared foundation packages, local PostgreSQL/Redis infrastructure, and CI/security gates. Product version is `0.0.3`; the engineering specification is `0.3.0`.
+Sprint 0.3 bootstrapped the modular-monolith workspace with a React/Vite web shell, Fastify API shell, worker shell, shared foundation packages, local PostgreSQL/Redis infrastructure, and CI/security gates. Sprint 0.3.1 validated and stabilized that platform with real dependency, fault-recovery, worker, browser, and hosted CI runs. Product version is `0.0.4`; the engineering specification remains `0.3.0`.
 
 > **Live trading is disabled and not implemented.** Scores and future AI analysis are decision-support signals, not guarantees or independent transaction authorization.
 

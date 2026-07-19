@@ -25,6 +25,8 @@ Versions are exact in manifests and fully resolved by `pnpm-lock.yaml`. Sources 
 | Playwright | Chromium smoke test | root/tests | dev | Apache-2.0 | 1.61.1 exact | Browser binary installed only where required |
 | PostgreSQL image | local transactional dependency | Compose/CI | runtime infrastructure | PostgreSQL License | `18.4-trixie` exact | Local/CI only; no domain schema |
 | Redis image | local ephemeral dependency | Compose/CI | runtime infrastructure | BSD-3-Clause for 7.2 line | `7.2.14-alpine3.21` exact | Selected over Redis 8 licensing change; reassess support/security |
-| actions/checkout / setup-node / pnpm action-setup | CI bootstrap | GitHub Actions | CI | MIT | full commit SHA, v6/v4 lines | Official upstream actions, read-only, credentials not persisted |
+| actions/checkout / setup-node / pnpm action-setup | CI bootstrap | GitHub Actions | CI | MIT | full commit SHA, v6 lines | Official upstream actions, read-only, credentials not persisted; pnpm action v6.0.8 uses the Node.js 24 action runtime |
 
-`@types/node`, `@types/react`, `@types/react-dom`, and `tsx` are exact development-only typing/runner dependencies under their published MIT licenses. Transitive packages and integrity hashes are recorded in the lockfile rather than duplicated here. One transitive deprecated `glob@10.5.0` was observed during install and remains an external update risk.
+`@types/node`, `@types/react`, `@types/react-dom`, and `tsx` are exact development-only typing/runner dependencies under their published MIT licenses. Transitive packages and integrity hashes are recorded in the lockfile rather than duplicated here.
+
+`pnpm why glob` in Sprint 0.3.1 traced deprecated `glob@10.5.0` to Testcontainers 12.0.4 through `archiver@7.0.1` and `archiver-utils@5.0.2`. The runtime Swagger UI path independently uses non-deprecated `glob@13.0.6`. The deprecated version is test-only, the audit reports no known high-severity vulnerability, and no safe direct override is justified because changing an internal archiver dependency could violate its compatibility range. Track Testcontainers/archiver upstream and remove the risk through a reviewed upstream update.

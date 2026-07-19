@@ -7,7 +7,7 @@ const serverEnvironmentSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     APP_ENV: z.string().min(1).default('local'),
-    APP_VERSION: z.literal('0.0.3').default('0.0.3'),
+    APP_VERSION: z.literal('0.0.4').default('0.0.4'),
     LOG_LEVEL: z
       .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
       .default('info'),

@@ -15,7 +15,7 @@ export function deterministicTestEnvironment(overrides: NodeJS.ProcessEnv = {}):
   return {
     NODE_ENV: 'test',
     APP_ENV: 'test',
-    APP_VERSION: '0.0.3',
+    APP_VERSION: '0.0.4',
     LOG_LEVEL: 'silent',
     API_HOST: '127.0.0.1',
     API_PORT: '3000',

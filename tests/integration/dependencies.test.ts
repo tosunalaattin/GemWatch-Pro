@@ -2,6 +2,8 @@ import { PostgreSqlContainer, type StartedPostgreSqlContainer } from '@testconta
 import { GenericContainer, type StartedTestContainer, Wait } from 'testcontainers';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
+import { assertSafeTestDatabaseUrl } from '../../packages/testing/src/index.js';
+import { withTimeout } from '../../apps/api/src/infrastructure/dependency-probe.js';
 import { createPostgresProbe } from '../../apps/api/src/infrastructure/postgres.js';
 import { createRedisProbe } from '../../apps/api/src/infrastructure/redis.js';
 
@@ -16,8 +18,8 @@ describe.skipIf(!enabled)('PostgreSQL and Redis connectivity', () => {
     if (process.env.USE_EXTERNAL_TEST_SERVICES === 'true') {
       databaseUrl = process.env.TEST_DATABASE_URL ?? '';
       redisUrl = process.env.TEST_REDIS_URL ?? '';
-      if (!databaseUrl.includes('gemwatch_test_') || !redisUrl)
-        throw new Error('Safe test service URLs are required');
+      assertSafeTestDatabaseUrl(databaseUrl);
+      if (!redisUrl) throw new Error('A safe test Redis URL is required');
       return;
     }
     [postgres, redis] = await Promise.all([
@@ -33,6 +35,7 @@ describe.skipIf(!enabled)('PostgreSQL and Redis connectivity', () => {
     ]);
     databaseUrl = postgres.getConnectionUri();
     redisUrl = `redis://${redis.getHost()}:${redis.getMappedPort(6379)}/0`;
+    assertSafeTestDatabaseUrl(databaseUrl);
   });
 
   afterAll(async () => {
@@ -56,7 +59,21 @@ describe.skipIf(!enabled)('PostgreSQL and Redis connectivity', () => {
 
   it('normalizes unreachable dependency failures without credentials', async () => {
     const probe = createRedisProbe('redis://127.0.0.1:1/0', 100);
-    await expect(probe.check()).rejects.toThrow();
+    const error = await probe.check().catch((reason: unknown) => reason);
+    expect(error).toBeInstanceOf(Error);
+    expect(String(error)).not.toContain('redis://');
     await probe.close();
+  });
+
+  it('bounds dependency checks with a normalized timeout', async () => {
+    await expect(withTimeout(new Promise(() => undefined), 25)).rejects.toThrow(
+      'Dependency check timed out',
+    );
+  });
+
+  it('rejects production-like test database credentials', () => {
+    expect(() =>
+      assertSafeTestDatabaseUrl('postgresql://production:secret@127.0.0.1/gemwatch_test_prod'),
+    ).toThrow('Production-like credentials are prohibited in tests');
   });
 });

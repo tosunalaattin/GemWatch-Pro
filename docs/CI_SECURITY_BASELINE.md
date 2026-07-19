@@ -8,6 +8,8 @@
 
 Workflows declare read-only repository permissions, never use `pull_request_target`, do not interpolate untrusted PR metadata into shell commands, receive no production secret, and contain no deployment step. Official GitHub actions and the official pnpm setup action are pinned to full commit SHAs with credential persistence disabled.
 
+The hosted push runs for commit `d445f9f` were discovered and verified in Sprint 0.3.1: CI run `29698435218` succeeded in 58 seconds with successful quality, integration, and end-to-end jobs; Security Baseline run `29698435213` succeeded in 25 seconds. The earlier report of missing runs was an observation-access limitation, not a workflow trigger failure. The pnpm setup action was upgraded from v4 to the Node.js 24-compatible v6.0.8 commit to remove the hosted Node.js 20 action-runtime warning.
+
 ## Supply-Chain Gates
 
 The package lock is installed frozen. pnpm build-script allow/deny decisions are explicit. The security workflow installs with scripts disabled, verifies the sole lockfile, runs a high-severity dependency audit, scans tracked content for secret patterns, and validates environment safety. The local scanner is a baseline, not a substitute for GitHub secret scanning or historical scanning.

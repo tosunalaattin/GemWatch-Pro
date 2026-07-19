@@ -5,7 +5,7 @@
 - Repository: tosunalaattin/GemWatch-Pro
 - Default branch: main
 - State date: 2026-07-19
-- Product version: 0.0.3
+- Product version: 0.0.4
 - Specification version: 0.3.0
 
 ## Current Phase
@@ -14,7 +14,7 @@ Foundation
 
 ## Current Sprint
 
-Sprint 0.3 — Development Platform Bootstrap
+Sprint 0.3.1 — Platform Validation and Stabilization
 
 ## Sprint Status
 
@@ -29,7 +29,12 @@ Completed
 - Worker shell: Implemented
 - PostgreSQL local development: Available
 - Redis local development: Available
+- Integration tests: Passed with disposable containers
+- API dependency readiness and recovery: Validated
+- Worker runtime lifecycle: Validated
+- Playwright smoke test: Passed
 - CI baseline: Implemented
+- Hosted CI and security workflows: Passed for Sprint 0.3 bootstrap commit
 - Production deployment: Not started
 - Live trading: Disabled / Not implemented
 - Paper trading: Not implemented
@@ -45,6 +50,8 @@ Completed
 - Local PostgreSQL/Redis Compose with health checks and guarded reset
 - CI and weekly security baseline with pinned official actions
 - Environment, local development, health, CI security, and dependency documentation
+- Windows Docker Desktop, real dependency, fault-recovery, worker signal, browser smoke, and hosted workflow validation
+- Local-only dependency port publishing, Redis host-client correction, deterministic E2E startup, flat-config ignore cleanup, and Node.js 24-compatible pnpm CI action
 
 ## In-Progress Work
 
@@ -59,9 +66,8 @@ None.
 ## Known Issues
 
 - Local verification used bundled Node 24.14.0 and pnpm 11.9.0 because global tools were intentionally not modified; CI/repository policy targets Node 24.18.0 and pnpm 11.15.0.
-- Docker Desktop daemon 29.6.1 responded, but Compose image/status calls repeatedly timed out; real integration tests were therefore visibly skipped. Playwright E2E also timed out while waiting for local web servers and did not pass.
-- ESLint 9 passes but emits the expected compatibility warning that the task-required `.eslintignore` is superseded by flat-config `ignores`.
-- One deprecated transitive `glob@10.5.0` was reported during install; no direct deprecated dependency was selected.
+- OneDrive caused no bind-mount or runtime correctness failure, but repository writes and cold starts were intermittently slow; a non-synchronized path is recommended if this persists.
+- Deprecated transitive `glob@10.5.0` is test-only through Testcontainers/archiver; audit is clean and a risky override is not justified.
 
 ## Active Risks
 
@@ -86,11 +92,11 @@ A pnpm/Turborepo modular-monolith workspace runs a React/Vite status shell, Fast
 - Data connectivity: PostgreSQL 18 client health; Redis 7.2 PING; Drizzle installed without schema
 - Quality: ESLint 9 flat typed rules, Prettier 3, Vitest 4, Testcontainers 12, Playwright 1.61
 - Observability: Pino 10 structured redaction; OpenTelemetry JS 0.220 disabled by default
-- CI: SHA-pinned official GitHub actions; read-only permissions; no deployment
+- CI: Node.js 24-compatible SHA-pinned official GitHub actions; read-only permissions; no deployment
 
 ## Current Versions
 
-- Product/repository baseline: 0.0.3
+- Product/repository baseline: 0.0.4
 - Engineering specification: 0.3.0
 - Health contract: 1.0.0
 - ADR series: ADR-0001 through ADR-0019 accepted
@@ -116,7 +122,13 @@ A pnpm/Turborepo modular-monolith workspace runs a React/Vite status shell, Fast
 - [x] Versions and health contract synchronized
 - [x] No domain feature, schema, provider, wallet, paper, or live implementation added
 - [x] Live trading configuration rejects `true`
-- [x] Final format/lint/type/unit/build/docs/workspace/audit/secret checks passed; Docker integration and E2E limitations recorded
+- [x] Sprint 0.3 baseline format/lint/type/unit/build/docs/workspace/audit/secret checks passed
+- [x] Docker Desktop Linux engine, image pulls, Compose health, and loopback-only ports validated
+- [x] Testcontainers integration passed without skips and cleaned disposable resources
+- [x] API readiness, independent dependency faults, liveness, redaction, and recovery validated
+- [x] Worker startup, heartbeat, zero domain jobs, SIGINT/SIGTERM shutdown, and connection close validated
+- [x] Playwright Chromium smoke passed and API/web child processes were cleaned up
+- [x] CI and Security Baseline workflows discovered and externally verified successful for `d445f9f`
 
 ## Next Task
 

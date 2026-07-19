@@ -34,4 +34,4 @@ Exact branch-protection settings, required check names/reviewers, merge strategy
 
 ## Implemented Platform Rules
 
-The 0.0.3 baseline uses Conventional Commit style, one pnpm lockfile, SHA-pinned official CI actions, and automated format/lint/type/test/build/docs/workspace/security gates. Branch protection remains an administrative follow-up; no workflow may rewrite history, force push, deploy production, or receive production secrets.
+The 0.0.4 baseline uses Conventional Commit style, one pnpm lockfile, Node.js 24-compatible SHA-pinned official CI actions, and automated format/lint/type/test/build/docs/workspace/security gates. Branch protection remains an administrative follow-up; no workflow may rewrite history, force push, deploy production, or receive production secrets.
